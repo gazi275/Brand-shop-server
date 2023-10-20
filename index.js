@@ -28,6 +28,7 @@ async function run() {
   
     await client.connect();
     const productCollection = client.db("productDB").collection("product");
+
     const addCartCollection = client.db("productDB").collection("addCart");
 
     app.post("/product", async (req, res) => {
@@ -43,6 +44,30 @@ async function run() {
         console.log(product);
         const result = await addCartCollection.insertOne(product);
         console.log(result);
+        res.send(result);
+      });
+      app.get('/details', async (req, res) => {
+        const brand = req.params.brand
+        const result = await addCartCollection.find().toArray();
+        
+        res.send(result);
+      });
+      app.delete("/details/:id", async (req, res) => {
+        const id = req.params.id;
+        console.log("delete", id);
+        const query = {
+          _id: new ObjectId(id),
+        };
+        const query1= {
+          brand:" Nestle"
+        }
+       
+        console.log(query);
+        const result = await addCartCollection.deleteOne(query1);
+
+        console.log(result);
+
+        
         res.send(result);
       });
 
