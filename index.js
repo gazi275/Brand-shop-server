@@ -52,24 +52,21 @@ async function run() {
         
         res.send(result);
       });
-      app.delete("/details/:id", async (req, res) => {
-        const id = req.params.id;
-        console.log("delete", id);
-        const query = {
-          _id: new ObjectId(id),
-        };
-        const query1= {
-          brand:" Nestle"
-        }
+      // app.delete("/details/:id", async (req, res) => {
+      //   const id = req.params.id;
+      //   console.log("delete", id);
+      //   const query = {
+      //     _id: new ObjectId(id),
+      //   };
        
-        console.log(query);
-        const result = await addCartCollection.deleteOne(query1);
+      //   console.log(query);
+      //   const result = await addCartCollection.deleteMany(query);
 
-        console.log(result);
+      //   console.log(result);
 
         
-        res.send(result);
-      });
+      //   res.send(result);
+      // });
 
       app.put("/updatedproduct/:id", async (req, res) => {
         const id = req.params.id;
